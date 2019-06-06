@@ -8,6 +8,22 @@
 
 import UIKit
 import CoreData
+import ReSwift
+
+let loggingMiddleware: Middleware<Any> = { dispatch, getState in
+    return { next in
+        return { action in
+            print(action)
+            return next(action)
+        }
+    }
+}
+
+let mainStore = Store<AppState>(
+    reducer: counterReducer,
+    state: nil,
+    middleware: [loggingMiddleware]
+)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
