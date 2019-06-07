@@ -19,8 +19,40 @@ let loggingMiddleware: Middleware<Any> = { dispatch, getState in
     }
 }
 
+struct AppState: StateType {
+    var counterState = CounterState()
+}
+
+struct CounterState: StateType {
+    var counter: Int = 0
+}
+
+extension AppState {
+    static func reducer(action: Action, state: AppState?) -> AppState {
+        return AppState(counterState: CounterState.reducer(action: action, state: state?.counterState))
+    }
+}
+
+extension CounterState {
+    static func reducer(action: Action, state: CounterState?) -> CounterState {
+        var state = state ?? CounterState()
+
+        switch action {
+        case _ as CounterActionIncrease:
+            state.counter += 1
+        case _ as CounterActionDecrease:
+            state.counter -= 1
+        default:
+            break
+        }
+        print("reducer state=\(state.counter)")
+
+        return state
+    }
+}
+
 let mainStore = Store<AppState>(
-    reducer: counterReducer,
+    reducer: AppState.reducer,
     state: nil,
     middleware: [loggingMiddleware]
 )

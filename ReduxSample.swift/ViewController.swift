@@ -9,26 +9,8 @@
 import UIKit
 import ReSwift
 
-struct AppState: StateType {
-    var counter: Int = 0
-}
 struct CounterActionIncrease: Action {}
 struct CounterActionDecrease: Action {}
-
-func counterReducer(action: Action, state: AppState?) -> AppState {
-    var state = state ?? AppState()
-
-    switch action {
-    case _ as CounterActionIncrease:
-        state.counter += 1
-    case _ as CounterActionDecrease:
-        state.counter -= 1
-    default:
-        break
-    }
-
-    return state
-}
 
 class ViewController: UIViewController, StoreSubscriber {
 
@@ -48,7 +30,8 @@ class ViewController: UIViewController, StoreSubscriber {
     }
 
     func newState(state: AppState) {
-        self.counterLabel.text = "\(state.counter)"
+        print("received state=\(state.counterState.counter)")
+        self.counterLabel.text = "\(state.counterState.counter)"
     }
 
     @IBAction func increaseButtonTapped(_ sender: UIButton) {
