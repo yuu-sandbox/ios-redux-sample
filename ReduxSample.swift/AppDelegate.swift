@@ -13,7 +13,7 @@ import ReSwift
 let loggingMiddleware: Middleware<Any> = { dispatch, getState in
     return { next in
         return { action in
-            print(action)
+            print("Action:", action)
             return next(action)
         }
     }
@@ -30,10 +30,19 @@ struct CounterState: StateType {
 
 extension AppState {
     static func reducer(action: Action, state: AppState?) -> AppState {
-        return AppState(
-            counterState: CounterState.reducer(action: action, state: state?.counterState),
-            otherState: OtherState.reducer(action: action, state: state?.otherState)
-        )
+        var state = state ?? AppState()
+        if case is CounterActionIncrease = action {
+            state.counterState = CounterState.reducer(action: action, state: state.counterState)
+        }
+        if case is CounterActionDecrease = action {
+            state.counterState = CounterState.reducer(action: action, state: state.counterState)
+        }
+
+        if case is OtherAction = action {
+            state.otherState = OtherState.reducer(action: action, state: state.otherState)
+        }
+
+        return state
     }
 }
 
