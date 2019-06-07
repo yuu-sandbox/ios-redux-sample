@@ -27,16 +27,18 @@ class ViewController: UIViewController, StoreSubscriber {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        mainStore.subscribe(self)
+        mainStore.subscribe(self) { (state) -> Subscription<CounterState> in
+            state.select { $0.counterState }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         mainStore.unsubscribe(self)
     }
 
-    func newState(state: AppState) {
-        print("received state=\(state.counterState.counter)")
-        self.counterLabel.text = "\(state.counterState.counter)"
+    func newState(state: CounterState) {
+        print("received state=\(state.counter)")
+        self.counterLabel.text = "\(state.counter)"
     }
 
     @IBAction func increaseButtonTapped(_ sender: UIButton) {
