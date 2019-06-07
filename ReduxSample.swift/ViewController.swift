@@ -12,6 +12,11 @@ import ReSwift
 struct CounterActionIncrease: Action {}
 struct CounterActionDecrease: Action {}
 
+enum OtherAction: Action {
+    case Ok(Int)
+    case Err(String)
+}
+
 class ViewController: UIViewController, StoreSubscriber {
 
     @IBOutlet var counterLabel: UILabel!
@@ -40,5 +45,9 @@ class ViewController: UIViewController, StoreSubscriber {
 
     @IBAction func decreaseButtonTapped(_ sender: UIButton) {
         mainStore.dispatch(CounterActionDecrease())
+    }
+
+    @IBAction func otherActionTapped(_ sender: UIButton) {
+        mainStore.dispatch(OtherAction.Ok(0))
     }
 }

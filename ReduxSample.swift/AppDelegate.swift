@@ -21,6 +21,7 @@ let loggingMiddleware: Middleware<Any> = { dispatch, getState in
 
 struct AppState: StateType {
     var counterState = CounterState()
+    var otherState = OtherState()
 }
 
 struct CounterState: StateType {
@@ -29,7 +30,10 @@ struct CounterState: StateType {
 
 extension AppState {
     static func reducer(action: Action, state: AppState?) -> AppState {
-        return AppState(counterState: CounterState.reducer(action: action, state: state?.counterState))
+        return AppState(
+            counterState: CounterState.reducer(action: action, state: state?.counterState),
+            otherState: OtherState.reducer(action: action, state: state?.otherState)
+        )
     }
 }
 
@@ -45,9 +49,29 @@ extension CounterState {
         default:
             break
         }
-        print("reducer state=\(state.counter)")
+        print("counter reducer state=\(state.counter)")
 
         return state
+    }
+}
+
+struct OtherState {}
+extension OtherState {
+    static func reducer(action: Action, state: OtherState?) -> OtherState {
+        let state = state ?? OtherState()
+        guard let action = action as? OtherAction else {
+            print("other reducer nothing")
+            return state
+        }
+
+        switch action {
+        case let .Ok(x):
+            print("other reducer=\(x)")
+            return state
+        case let .Err(msg):
+            print("other reducer=\(msg)")
+            return state
+        }
     }
 }
 
