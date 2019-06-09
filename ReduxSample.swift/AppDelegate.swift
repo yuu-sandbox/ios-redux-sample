@@ -8,6 +8,44 @@
 
 import UIKit
 import CoreData
+import Octokit
+import ReSwift
+import ReSwiftThunk
+
+let loggingMiddleware: Middleware<Any> = { dispatch, getState in
+    return { next in
+        return { action in
+            print("Action:", action)
+            return next(action)
+        }
+    }
+}
+
+//let thunksMiddleware: Middleware<AppState> = createThunksMiddleware()
+let mainStore = Store<AppState>(
+    reducer: AppState.reducer,
+    state: nil,
+    middleware: [loggingMiddleware]
+)
+
+struct AppState: StateType {
+    var auth: AuthState = .loggedIn(TokenConfiguration(""))
+
+    var repoList = RepoListState()
+}
+
+extension AppState {
+    static func reducer(action: Action, state: AppState?) -> AppState {
+        var state = state ?? AppState()
+
+        if case is RepoListState.Action = action {
+            let act = action as! RepoListState.Action
+            state.repoList = RepoListState.reducer(action: act, state: state.repoList)
+        }
+
+        return state
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

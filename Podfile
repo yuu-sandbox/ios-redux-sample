@@ -7,5 +7,8 @@ target 'ReduxSample.swift' do
 
   # Pods for ReduxSample.swift
   pod 'ReSwift'
+  pod 'OctoKit.swift'
+  pod 'ReSwiftThunk'
+  pod 'SVProgressHUD'
 
 end

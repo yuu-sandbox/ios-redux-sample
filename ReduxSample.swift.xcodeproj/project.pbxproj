@@ -14,6 +14,9 @@
 		CAF81A5C22A8E2BB00A22F0E /* ReduxSample_swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAF81A5A22A8E2BB00A22F0E /* ReduxSample_swift.xcdatamodeld */; };
 		CAF81A5E22A8E2BC00A22F0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAF81A5D22A8E2BC00A22F0E /* Assets.xcassets */; };
 		CAF81A6122A8E2BC00A22F0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF81A5F22A8E2BC00A22F0E /* LaunchScreen.storyboard */; };
+		CAFBB64122AD0810000ADD47 /* RepoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFBB64022AD0810000ADD47 /* RepoList.swift */; };
+		CAFBB64322AD1C5F000ADD47 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFBB64222AD1C5F000ADD47 /* Auth.swift */; };
+		CAFBB64522AD2EF1000ADD47 /* RepoListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFBB64422AD2EF1000ADD47 /* RepoListViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		CAF81A5D22A8E2BC00A22F0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAF81A6022A8E2BC00A22F0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAF81A6222A8E2BC00A22F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAFBB64022AD0810000ADD47 /* RepoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoList.swift; sourceTree = "<group>"; };
+		CAFBB64222AD1C5F000ADD47 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CAFBB64422AD2EF1000ADD47 /* RepoListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +54,6 @@
 				5C8B95EA23A3D6DEC54F9D35 /* Pods-ReduxSample.swift.debug.xcconfig */,
 				2C5C7EE78AD217742F835587 /* Pods-ReduxSample.swift.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -88,6 +93,9 @@
 				CAF81A5F22A8E2BC00A22F0E /* LaunchScreen.storyboard */,
 				CAF81A6222A8E2BC00A22F0E /* Info.plist */,
 				CAF81A5A22A8E2BB00A22F0E /* ReduxSample_swift.xcdatamodeld */,
+				CAFBB64022AD0810000ADD47 /* RepoList.swift */,
+				CAFBB64222AD1C5F000ADD47 /* Auth.swift */,
+				CAFBB64422AD2EF1000ADD47 /* RepoListViewCell.swift */,
 			);
 			path = ReduxSample.swift;
 			sourceTree = "<group>";
@@ -192,13 +200,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ReduxSample.swift/Pods-ReduxSample.swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NBNRequestKit/RequestKit.framework",
+				"${BUILT_PRODUCTS_DIR}/OctoKit.swift/Octokit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwiftThunk/ReSwiftThunk.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RequestKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Octokit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwiftThunk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -212,8 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFBB64322AD1C5F000ADD47 /* Auth.swift in Sources */,
 				CAF81A5622A8E2BB00A22F0E /* ViewController.swift in Sources */,
+				CAFBB64122AD0810000ADD47 /* RepoList.swift in Sources */,
 				CAF81A5422A8E2BB00A22F0E /* AppDelegate.swift in Sources */,
+				CAFBB64522AD2EF1000ADD47 /* RepoListViewCell.swift in Sources */,
 				CAF81A5C22A8E2BB00A22F0E /* ReduxSample_swift.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

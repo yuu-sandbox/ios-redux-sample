@@ -1,16 +1,33 @@
 PODS:
+  - NBNRequestKit (2.2.0)
+  - OctoKit.swift (0.8.0):
+    - NBNRequestKit (~> 2.0)
   - ReSwift (4.1.1)
+  - ReSwiftThunk (1.1.0):
+    - ReSwift (~> 4.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - OctoKit.swift
   - ReSwift
+  - ReSwiftThunk
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - NBNRequestKit
+    - OctoKit.swift
     - ReSwift
+    - ReSwiftThunk
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
+  NBNRequestKit: 30c39d8e23e94f935bfc2a25789c44e4a6e1bfdd
+  OctoKit.swift: 2f51efbf888997fc625b91894777e76e9142d95b
   ReSwift: d925be0033558f55bd73d92869961230dfe19d52
+  ReSwiftThunk: 727c1549dbd2949472e1c72bec44b1008d7c4f92
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 9fd782147bc11b1433d89677e0d099c8ce916c1f
+PODFILE CHECKSUM: 05d5d7c827782a082d13caf6eec41c5001b774b9
 
 COCOAPODS: 1.6.2

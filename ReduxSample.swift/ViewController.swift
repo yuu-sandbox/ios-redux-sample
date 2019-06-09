@@ -7,17 +7,45 @@
 //
 
 import UIKit
+import ReSwift
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, StoreSubscriber {
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        mainStore.dispatch(RepoListState.fetchRepositories)
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        mainStore.subscribe(self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        mainStore.unsubscribe(self)
+    }
+
+    func newState(state: AppState) {
+        if state.repoList.loading {
+        } else {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mainStore.state.repoList.repositories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RepoListViewCell
+        cell.repoNameLabel.text = mainStore.state.repoList.repositories[indexPath.row].name
+        return cell
     }
 }
