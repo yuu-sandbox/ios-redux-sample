@@ -40,23 +40,24 @@ extension RepoListState {
         return state
     }
 
-    static func fetchRepositories(state: AppState, store: Store<AppState>) -> Action? {
-        guard case let .loggedIn(configuration) = state.auth else { return nil }
+    static let fetchRepositories = Thunk<AppState> { (dispatch, getState) in
+        guard let state = getState() else { return }
+        guard case let .loggedIn(configuration) = state.auth else { return }
 
         let _ = Octokit(configuration).repositories { (response) in
             switch response {
             case let .success(repositories):
                 DispatchQueue.main.async {
-                    store.dispatch(RepoListState.Action.repositories(repositories))
+                    dispatch(RepoListState.Action.repositories(repositories))
                 }
             case let .failure(err):
                 DispatchQueue.main.async {
-                    store.dispatch(RepoListState.Action.networkError(err))
+                    dispatch(RepoListState.Action.networkError(err))
                     print(err)
                 }
             }
         }
 
-        return .loading
+        dispatch(Action.loading)
     }
 }

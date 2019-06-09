@@ -21,11 +21,12 @@ let loggingMiddleware: Middleware<Any> = { dispatch, getState in
     }
 }
 
-//let thunksMiddleware: Middleware<AppState> = createThunksMiddleware()
+let thunksMiddleware: Middleware<AppState> = createThunksMiddleware()
+
 let mainStore = Store<AppState>(
     reducer: AppState.reducer,
     state: nil,
-    middleware: [loggingMiddleware]
+    middleware: [loggingMiddleware, thunksMiddleware]
 )
 
 struct AppState: StateType {
