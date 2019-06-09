@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SVProgressHUD
 
 class ViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var tableView: UITableView!
@@ -29,7 +30,9 @@ class ViewController: UIViewController, StoreSubscriber {
 
     func newState(state: AppState) {
         if state.repoList.loading {
+            SVProgressHUD.show()
         } else {
+            SVProgressHUD.dismiss()
             self.tableView.reloadData()
         }
     }
